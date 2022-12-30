@@ -1,3 +1,5 @@
+// ****** select items **********
+
 const form = document.querySelector(".grocery-form");
 const alert = document.querySelector(".alert");
 const grocery = document.getElementById("grocery");
@@ -12,12 +14,11 @@ let editID = "";
 
 
 
-form.addEventListener("Adicionar", addItem);
+form.addEventListener("submit", addItem);
 
 clearBtn.addEventListener("click", clearItems);
 
 window.addEventListener("DOMContentLoaded", setupItems);
-
 
 
 
@@ -44,38 +45,38 @@ function addItem(e) {
               </button>
             </div>
           `;
- 
+
     const deleteBtn = element.querySelector(".delete-btn");
     deleteBtn.addEventListener("click", deleteItem);
     const editBtn = element.querySelector(".edit-btn");
     editBtn.addEventListener("click", editItem);
 
-  
+
     list.appendChild(element);
-   
-    displayAlert("Acrescente mais Ítens", "success");
-    
+
+    displayAlert("item added to the list", "success");
+
     container.classList.add("show-container");
-    
+
     addToLocalStorage(id, value);
-    
+
     setBackToDefault();
   } else if (value !== "" && editFlag) {
     editElement.innerHTML = value;
     displayAlert("value changed", "success");
 
-  
+
     editLocalStorage(editID, value);
     setBackToDefault();
   } else {
     displayAlert("please enter value", "danger");
   }
 }
-
+// display alert
 function displayAlert(text, action) {
   alert.textContent = text;
   alert.classList.add(`alert-${action}`);
-  
+
   setTimeout(function () {
     alert.textContent = "";
     alert.classList.remove(`alert-${action}`);
@@ -116,13 +117,13 @@ function deleteItem(e) {
 
 function editItem(e) {
   const element = e.currentTarget.parentElement.parentElement;
-  
+
   editElement = e.currentTarget.parentElement.previousElementSibling;
- 
+
   grocery.value = editElement.innerHTML;
   editFlag = true;
   editID = element.dataset.id;
-  //
+
   submitBtn.textContent = "edit";
 }
 
@@ -132,8 +133,6 @@ function setBackToDefault() {
   editID = "";
   submitBtn.textContent = "submit";
 }
-
-
 
 function addToLocalStorage(id, value) {
   const grocery = { id, value };
@@ -173,8 +172,6 @@ function editLocalStorage(id, value) {
 
 
 
-
-
 function setupItems() {
   let items = getLocalStorage();
 
@@ -204,12 +201,11 @@ function createListItem(id, value) {
               </button>
             </div>
           `;
- 
+
   const deleteBtn = element.querySelector(".delete-btn");
   deleteBtn.addEventListener("click", deleteItem);
   const editBtn = element.querySelector(".edit-btn");
   editBtn.addEventListener("click", editItem);
 
- 
   list.appendChild(element);
 }
