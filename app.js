@@ -12,7 +12,7 @@ let editID = "";
 
 
 
-form.addEventListener("submit", addItem);
+form.addEventListener("Adicionar", addItem);
 
 clearBtn.addEventListener("click", clearItems);
 
@@ -53,7 +53,7 @@ function addItem(e) {
   
     list.appendChild(element);
    
-    displayAlert("item added to the list", "success");
+    displayAlert("Acrescente mais Ítens", "success");
     
     container.classList.add("show-container");
     
